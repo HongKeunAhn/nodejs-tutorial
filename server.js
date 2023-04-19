@@ -1,15 +1,27 @@
 const express = require('express');
-
 const app = express();
-
-const router = require('./router/main')(app);
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const fs = require('fs');
 
 app.set('views', __dirname + '/pages');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
-app.use(express.static('public'));
 const server = app.listen(3000, () => {
   console.log('Express server has started on port 3000');
 });
 
+app.use(express.static('public'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(
+  session({
+    secret: 'FA@#1',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+const router = require('./router/main')(app, fs);

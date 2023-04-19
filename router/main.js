@@ -1,9 +1,8 @@
-module.exports = (app) => {
-    app.get('/', (request, response) => {
-        response.render('index.html');
+module.exports = (app, fs) => {
+  app.get('/', (request, response) => {
+    response.render('index', {
+      title: 'My Home',
+      length: 5,
     });
-
-    app.get('/about', (request, response) => {
-        response.render('about.html');
-    })
-}
+  });
+};
