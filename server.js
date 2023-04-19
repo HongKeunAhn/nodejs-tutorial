@@ -1,31 +1,15 @@
-const http = require('http');
-const fs = require('fs');
-const url = require('url');
+const express = require('express');
 
-http
-  .createServer((request, response) => {
-    let pathname = url.parse(request.url).pathname;
+const app = express();
 
-    console.log(`Request for ${pathname} received`);
+const router = require('./router/main')(app);
 
-    if (pathname == '/') {
-      pathname = '/index.html';
-    }
+app.set('views', __dirname + '/pages');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 
-    fs.readFile(pathname.substring(1), (error, data) => {
-      if (error) {
-        console.log(error);
+app.use(express.static('public'));
+const server = app.listen(3000, () => {
+  console.log('Express server has started on port 3000');
+});
 
-        response.writeHead(404, { 'Content-Type': 'text/html' });
-      } else {
-        response.writeHead(200, { 'Content-Type': 'text/html' });
-
-        response.write(data.toString());
-      }
-
-      response.end();
-    });
-  })
-  .listen(8081);
-
-console.log('Server running at http://127.0.0.1:8081');

@@ -5,5 +5,9 @@
   "main": "server.js",
   "repository": "https://github.com/HongKeunAhn/nodejs-tutorial.git",
   "author": "<skcor8909@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
 }
