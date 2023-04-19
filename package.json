@@ -1,0 +1,9 @@
+{
+  "name": "tutorial",
+  "version": "1.0.0",
+  "description": "nodejs project tutorial",
+  "main": "server.js",
+  "repository": "https://github.com/HongKeunAhn/nodejs-tutorial.git",
+  "author": "<skcor8909@gmail.com>",
+  "license": "MIT"
+}
