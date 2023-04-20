@@ -1,8 +1,12 @@
 module.exports = (app, fs) => {
   app.get('/', (request, response) => {
+    const session = request.session;
+
     response.render('index', {
       title: 'My Home',
       length: 5,
+      name: session.name,
+      username: session.username,
     });
   });
 

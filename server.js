@@ -25,3 +25,4 @@ app.use(
 );
 
 const router = require('./router/main')(app, fs);
+const auth = require('./router/auth')(app, fs);
